@@ -1,6 +1,5 @@
 from subprocess import Popen, PIPE
 from os import remove
-from PIL import Image
 
 #constants
 XRES = 500
@@ -56,20 +55,11 @@ def save_ppm_ascii( screen, fname ):
     f.close()
 
 def save_extension( screen, fname ):
-    img = Image.new('RGB', (len(screen[0]), len(screen)))
-
-    pixels = []
-    for row in screen:
-        for pixel in row:
-            pixels.append( tuple(pixel) )
-
-    img.putdata(pixels)
-    img.save(fname, 'PNG')
-    # ppm_name = fname[:fname.find('.')] + '.ppm'
-    # save_ppm_ascii( screen, ppm_name )
-    # p = Popen( ['convert', ppm_name, fname ], stdin=PIPE, stdout = PIPE )
-    # p.communicate()
-    # remove(ppm_name)
+    ppm_name = fname[:fname.find('.')] + '.ppm'
+    save_ppm_ascii( screen, ppm_name )
+    p = Popen( ['convert', ppm_name, fname ], stdin=PIPE, stdout = PIPE )
+    p.communicate()
+    remove(ppm_name)
 
 def display( screen ):
     ppm_name = 'pic.ppm'

@@ -7,22 +7,39 @@ y0  y1      yn
 z0  z1  ... zn
 1  1        1
 """
-import math
+from copy import deepcopy
 
 #print the matrix such that it looks like
 #the template in the top comment
 def print_matrix( matrix ):
-    pass
+    for col in range(len(matrix[0])):
+        column=[matrix[i][col] for i in range(len(matrix))]
+        print(*column)
 
 #turn the paramter matrix into an identity matrix
 #you may assume matrix is square
 def ident( matrix ):
+    for i in range(len(matrix)):
+        for j in range(len(matrix[0])):
+            if i==j:
+                matrix[i][j]=1
+            else:
+                matrix[i][j]=0
     pass
 
 #multiply m1 by m2, modifying m2 to be the product
 #m1 * m2 -> m2
 def matrix_mult( m1, m2 ):
-    pass
+    ans=[]
+    for i in range(len(m2)):
+        ans.append(len(m1)*[0])
+    for i in range(len(m1[0])):
+        for j in range(len(m2)):
+            for k in range(len(m1)):
+                ans[j][i]+=m1[k][i]*m2[j][k]
+    for i in range(len(m2)):
+        for j in range(len(m2[0])):
+            m2[i][j]=ans[i][j]
 
 
 
