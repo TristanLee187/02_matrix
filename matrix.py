@@ -7,7 +7,6 @@ y0  y1      yn
 z0  z1  ... zn
 1  1        1
 """
-from copy import deepcopy
 
 #print the matrix such that it looks like
 #the template in the top comment

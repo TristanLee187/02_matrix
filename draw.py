@@ -4,10 +4,10 @@ from matrix import *
 
 def draw_lines( matrix, screen, color ):
     for i in range(0,len(matrix),2):
-        x0=matrix[i][0]
-        y0=matrix[i][1]
-        x1=matrix[i+1][0]
-        y1=matrix[i+1][1]
+        x0=round(matrix[i][0])%(XRES+1)
+        y0=round(matrix[i][1])%(YRES+1)
+        x1=round(matrix[i+1][0])%(XRES+1)
+        y1=round(matrix[i+1][1])%(YRES+1)
         draw_line(x0,y0,x1,y1,screen,color)
     pass
 
